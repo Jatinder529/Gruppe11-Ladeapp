@@ -1,5 +1,4 @@
 # Gruppe11-Ladeapp
-[![Ask DeepWiki](https://devin.ai/assets/askdeepwiki.png)](https://deepwiki.com/Jatinder529/Gruppe11-Ladeapp)
 
 This repository contains the source code for a full-stack EV charging station application developed for THM (Technische Hochschule Mittelhessen). The project consists of a Spring Boot backend API and a React Native mobile application.
 
