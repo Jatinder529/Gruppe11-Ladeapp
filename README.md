@@ -14,7 +14,6 @@ Dieses Repository enthält den Quellcode für eine Full-Stack-Anwendung für E-L
     -   React Native (mit Expo)
     -   JavaScript
     -   React Navigation
-    -   Axios
 -   **Datenbank**:
     -   MongoDB
 
