@@ -1,123 +1,123 @@
 # Gruppe11-Ladeapp
 
-This repository contains the source code for a full-stack EV charging station application developed for THM (Technische Hochschule Mittelhessen). The project consists of a Spring Boot backend API and a React Native mobile application.
+Dieses Repository enthält den Quellcode für eine Full-Stack-Anwendung für E-Ladesäulen, entwickelt für die THM (Technische Hochschule Mittelhessen). Das Projekt besteht aus einer Spring-Boot-Backend-API und einer React-Native-Mobilanwendung.
 
 ## Tech Stack
 
 -   **Backend**:
     -   Java
     -   Spring Boot
-    -   Spring Security with JWT for authentication
+    -   Spring Security mit JWT für Authentifizierung
     -   Spring Data MongoDB
     -   Gradle
 -   **Frontend**:
-    -   React Native (with Expo)
+    -   React Native (mit Expo)
     -   JavaScript
     -   React Navigation
     -   Axios
--   **Database**:
+-   **Datenbank**:
     -   MongoDB
 
-## Project Structure
+## Projektstruktur
 
-The repository is organized into two main parts:
+Das Repository ist in zwei Hauptteile gegliedert:
 
--   `src/`: Contains the Spring Boot backend application.
--   `mobile/`: Contains the React Native (Expo) mobile frontend application.
+-   `src/`: Enthält die Spring-Boot-Backend-Anwendung.
+-   `mobile/`: Enthält die React-Native (Expo) mobile Frontend-Anwendung.
 
-## System Overview
+## Systemüberblick
 
-The application allows users to:
--   Register and log in to their accounts.
--   View a list of available EV charging points (`Ladepunkte`).
--   Filter charging points by location (`Standort`).
--   Reserve a charging point and start a charging session.
--   View the duration of an active session.
--   End a charging session.
+Die Anwendung ermöglicht Nutzer:innen:
+-   Sich zu registrieren und anzumelden.
+-   Eine Liste verfügbarer E-Ladepunkte (`Ladepunkte`) anzusehen.
+-   Ladepunkte nach Standort (`Standort`) zu filtern.
+-   Einen Ladepunkt zu reservieren und eine Ladesitzung zu starten.
+-   Die Dauer einer aktiven Sitzung anzuzeigen.
+-   Eine Ladesitzung zu beenden.
 
-## Prerequisites
+## Voraussetzungen
 
-Before you begin, ensure you have the following installed:
--   Java JDK 17 or later
+Bevor du startest, stelle sicher, dass Folgendes installiert ist:
+-   Java JDK 17 oder neuer
 -   MongoDB
--   Node.js and npm
--   Expo Go app on your mobile device or an Android/iOS emulator
+-   Node.js und npm
+-   Expo Go App auf deinem Mobilgerät oder ein Android/iOS-Emulator
 
-## Getting Started
+## Los geht’s
 
-### 1. Backend Setup
+### 1. Backend einrichten
 
-The backend server exposes a REST API on port `4000`.
+Der Backend-Server stellt eine REST-API auf Port `4000` bereit.
 
-1.  **Clone the repository:**
+1.  **Repository klonen:**
     ```sh
     git clone https://github.com/Jatinder529/Gruppe11-Ladeapp.git
     cd Gruppe11-Ladeapp
     ```
 
-2.  **Configure the backend:**
-    Ensure your MongoDB instance is running. You can configure the connection URI and JWT secret in `src/main/resources/application.properties`:
+2.  **Backend konfigurieren:**
+    Stelle sicher, dass deine MongoDB-Instanz läuft. Die Verbindungs-URI und das JWT-Secret kannst du in `src/main/resources/application.properties` einstellen:
     ```properties
     server.port=4000
     spring.data.mongodb.uri=mongodb://localhost:27017/evapp
     app.jwt.secret=change-this-super-long-demo-secret-key-64b+
     ```
-    It is highly recommended to change the `app.jwt.secret` for any production-like environment.
+    Es wird dringend empfohlen, das `app.jwt.secret` in produktionsnahen Umgebungen zu ändern.
 
-3.  **Run the backend:**
-    Use the Gradle wrapper to start the Spring Boot application.
+3.  **Backend starten:**
+    Verwende den Gradle-Wrapper, um die Spring-Boot-Anwendung zu starten.
     ```sh
-    # For macOS/Linux
+    # Für macOS/Linux
     ./gradlew bootRun
 
-    # For Windows
+    # Für Windows
     gradlew.bat bootRun
     ```
-    The backend API will be available at `http://localhost:4000`.
+    Die Backend-API ist dann unter `http://localhost:4000` erreichbar.
 
-### 2. Frontend (Mobile App) Setup
+### 2. Frontend (Mobile App) einrichten
 
-The mobile app connects to the backend to fetch data and manage user sessions.
+Die Mobile-App verbindet sich mit dem Backend, um Daten abzurufen und Sitzungen zu verwalten.
 
-1.  **Navigate to the mobile directory:**
+1.  **Zum Mobile-Ordner wechseln:**
     ```sh
     cd mobile
     ```
 
-2.  **Install dependencies:**
+2.  **Abhängigkeiten installieren:**
     ```sh
     npm install
     ```
 
-3.  **Configure API endpoint:**
-    The base URL for the API is defined in `mobile/src/api.js`. The default is configured to work with the Android emulator.
-    -   **Android Emulator**: `http://10.0.2.2:4000` (no changes needed)
-    -   **iOS Simulator/Physical Device on same Wi-Fi**: Change the URL to your computer's local IP address, e.g., `http://192.168.1.100:4000`.
+3.  **API-Endpoint konfigurieren:**
+    Die Basis-URL der API ist in `mobile/src/api.js` definiert. Die Standard-Konfiguration funktioniert mit dem Android-Emulator.
+    -   **Android-Emulator**: `http://10.0.2.2:4000` (keine Änderung nötig)
+    -   **iOS-Simulator/Physisches Gerät im selben WLAN**: URL auf die lokale IP-Adresse deines Rechners ändern, z. B. `http://192.168.1.100:4000`.
 
-4.  **Start the app:**
+4.  **App starten:**
     ```sh
     npm start
     ```
-    This will start the Metro bundler. You can then:
-    -   Scan the QR code with the Expo Go app on your phone.
-    -   Press `a` to run on an Android emulator.
-    -   Press `i` to run on an iOS simulator.
+    Dadurch startet der Metro-Bundler. Du kannst anschließend:
+    -   Den QR-Code mit der Expo-Go-App auf deinem Smartphone scannen.
+    -   `a` drücken, um im Android-Emulator zu starten.
+    -   `i` drücken, um im iOS-Simulator zu starten.
 
-## API Endpoints
+## API-Endpunkte
 
-The backend provides the following REST endpoints:
+Das Backend bietet folgende REST-Endpunkte:
 
 | Method  | Endpoint                                | Description                                       |
 | :------ | :-------------------------------------- | :------------------------------------------------ |
-| `POST`  | `/api/auth/register`                    | Registers a new user account.                     |
-| `POST`  | `/api/auth/login`                       | Authenticates a user and returns a JWT.           |
-| `GET`   | `/api/auth/me`                          | Retrieves the profile of the authenticated user.  |
-| `GET`   | `/api/ladepunkte`                       | Gets a list of all charging points.               |
-| `GET`   | `/api/ladepunkte?standort={name}`       | Filters charging points by location.              |
-| `POST`  | `/api/reservierungen/start`             | Starts a new charging session for a user.         |
-| `POST`  | `/api/reservierungen/{id}/end`          | Ends a specific charging session.                 |
-| `GET`   | `/api/reservierungen?benutzerId={id}`   | Retrieves all reservations for a specific user.   |
-| `GET`   | `/api/reservierungen?ladepunktId={id}` | Retrieves all reservations for a charging point.  |
-| `PATCH` | `/api/reservierungen/{id}/feedback`     | Adds feedback to a completed reservation.         |
-| `PATCH` | `/api/reservierungen/{id}/cancel`       | Cancels an active reservation.                    |
-| `GET`   | `/api/ping`                             | A simple health check endpoint.                   |
+| `POST`  | `/api/auth/register`                    | Registriert ein neues Benutzerkonto.              |
+| `POST`  | `/api/auth/login`                       | Authentifiziert einen Benutzer und gibt ein JWT zurück. |
+| `GET`   | `/api/auth/me`                          | Ruft das Profil des authentifizierten Benutzers ab. |
+| `GET`   | `/api/ladepunkte`                       | Gibt eine Liste aller Ladepunkte zurück.          |
+| `GET`   | `/api/ladepunkte?standort={name}`       | Filtert Ladepunkte nach Standort.                 |
+| `POST`  | `/api/reservierungen/start`             | Startet eine neue Ladesitzung für einen Benutzer. |
+| `POST`  | `/api/reservierungen/{id}/end`          | Beendet eine bestimmte Ladesitzung.               |
+| `GET`   | `/api/reservierungen?benutzerId={id}`   | Ruft alle Reservierungen eines bestimmten Benutzers ab. |
+| `GET`   | `/api/reservierungen?ladepunktId={id}`  | Ruft alle Reservierungen für einen Ladepunkt ab.  |
+| `PATCH` | `/api/reservierungen/{id}/feedback`     | Fügt Feedback zu einer abgeschlossenen Reservierung hinzu. |
+| `PATCH` | `/api/reservierungen/{id}/cancel`       | Storniert eine aktive Reservierung.               |
+| `GET`   | `/api/ping`                             | Ein einfacher Health-Check-Endpunkt.              |
